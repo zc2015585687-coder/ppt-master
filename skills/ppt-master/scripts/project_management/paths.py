@@ -20,7 +20,11 @@ PACKAGE_DIR = Path(__file__).resolve().parent
 SCRIPTS_DIR = PACKAGE_DIR.parent
 SKILL_DIR = SCRIPTS_DIR.parent
 REPO_ROOT = SKILL_DIR.parent.parent
-PROJECTS_ROOT = REPO_ROOT / "projects"
+# Generated presentation projects belong to the caller's active workspace by
+# default. Skill resources still resolve from SKILL_DIR/REPO_ROOT, while an
+# explicit ``project_manager.py init --dir ...`` continues to override this
+# default at the CLI layer.
+PROJECTS_ROOT = Path.cwd() / "projects"
 SOURCE_TO_MD_DIR = SCRIPTS_DIR / "source_to_md"
 CHARTS_DIR = SKILL_DIR / "templates" / "charts"
 SCHEMA_DIR = SKILL_DIR / "templates" / "schemas"
